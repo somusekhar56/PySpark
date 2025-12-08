@@ -74,5 +74,43 @@ SQL
 MLlib
 
 Streaming
+# 2. Revision on Spark Architecture: 
+2.1 Revising the architecture of Spark.
+Spark follows Master–Slave architecture.
+# Simple Flow:
+Your PySpark program → runs on Driver
 
+Driver splits job into tasks
+
+Cluster manager assigns tasks to Executors
+
+Executors process data in parallel
+
+Results are sent back to Driver
+
+# 2.2 Integration with Spark components like Driver and Executors.
+# Driver Program
+Runs your Python code
+
+Creates SparkSession
+
+Plans tasks using DAG Scheduler
+
+Sends tasks to executors
+# Executors
+Run tasks given by driver
+
+Perform transformations like map, filter
+
+Store data in memory (RDD/DataFrame caching)
+
+Return results to Driver
+# 3. Revision on Spark Components:
+SparkSession:Entry point for DataFrame, SQL, RDD, ML and it Combines SQLContext, HiveContext, and SparkContext
+
+RDD:Low-level distributed dataset.It supports transformations (map, filter) and it has no schema.
+
+DataFrame:High-level structured dataset and it Has schema (rows & columns).Optimized by Catalyst optimizer
+
+DAG Scheduler:Converts execution plan into stages, Handles failures
 
