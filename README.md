@@ -114,3 +114,20 @@ DataFrame:High-level structured dataset and it Has schema (rows & columns).Optim
 
 DAG Scheduler:Converts execution plan into stages, Handles failures
 
+# 4. SparkSession:
+SparkSession is the unified entry point to all Spark functionalities like DataFrame, SQL, and streaming.
+# 4.1 Explanation of SparkSession as the entry point to PySpark. 
+SparkSession is the unified entry point to use Spark in Python (DataFrame, SQL, streaming, catalog, configuration).You cannot use DataFrames or SQL without SparkSession.
+It contains a SparkContext inside (spark.sparkContext) so you get both high-level (DataFrame/SQL) and low-level (RDD) APIs from the same object.
+# It provides access to:
+* SparkContext: SparkContext is the entry point to the Spark Core engine.
+ # create SparkContext
+ from pyspark import SparkContext
+sc = SparkContext(master="local[*]", appName="OldSQLApp")
+
+* SQLContext: old interface for DataFrame & SQL operations.
+ # create SparkContext
+  from pyspark.sql import SQLContext
+sqlContext = SQLContext(sc)
+# 4.2 Configuring and creating a SparkSession.
+
