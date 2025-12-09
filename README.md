@@ -123,11 +123,13 @@ It contains a SparkContext inside (spark.sparkContext) so you get both high-leve
 * SparkContext: SparkContext is the entry point to the Spark Core engine.
  # create SparkContext
  from pyspark import SparkContext
+ 
 sc = SparkContext(master="local[*]", appName="OldSQLApp")
 
 * SQLContext: old interface for DataFrame & SQL operations.
  # create SparkContext
   from pyspark.sql import SQLContext
+  
 sqlContext = SQLContext(sc)
 # 4.2 Configuring and creating a SparkSession.
 
