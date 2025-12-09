@@ -127,9 +127,111 @@ It contains a SparkContext inside (spark.sparkContext) so you get both high-leve
 sc = SparkContext(master="local[*]", appName="OldSQLApp")
 
 * SQLContext: old interface for DataFrame & SQL operations.
- # create SparkContext
+ # create SQLContext
   from pyspark.sql import SQLContext
   
 sqlContext = SQLContext(sc)
 # 4.2 Configuring and creating a SparkSession.
+<img width="898" height="111" alt="image" src="https://github.com/user-attachments/assets/1ca43d94-9c72-4498-b33d-f41e24e93866" />
+
+# 5. DataFrame API:
+A PySpark DataFrame is a distributed table consisting of rows and columns, similar to SQL or Pandas DataFrame — but optimized for big data and parallel processing.Immutable
+# 5.1 Overview of the DataFrame API in pyspark:
+# Key Features:
+Schema-based (column names + data types)
+
+Distributed (works across multiple nodes)
+
+Optimized using Catalyst Optimizer
+
+Lazy evaluation
+
+Supports SQL-like operations (select, filter, groupBy)
+
+Can handle terabytes of data
+# 5.2 Comparison: PySpark DataFrame vs Pandas DataFrame
+| Feature         | **PySpark DataFrame**                     | **Pandas DataFrame**          |
+| --------------- | ----------------------------------------- | ----------------------------- |
+| Data Size       | TB/PB (big data)                          | MB/GB (small data)            |
+| Storage         | Distributed across cluster                | Stored in single machine RAM  |
+| Language        | Runs on Spark engine (Java/Scala backend) | Pure Python                   |
+| Execution       | Lazy                                      | Immediate                     |
+| Optimization    | Catalyst + Tungsten                       | No optimizer                  |
+| Speed           | Very fast for large data                  | Fast for small data           |
+| Fault Tolerance | Yes (RDD lineage)                         | No                            |
+| Parallelism     | Cluster-wide                              | Single machine                |
+| Use Case        | Big Data, ETL, ML pipelines               | Small datasets, data analysis |
+
+# 6. Transformations and Actions: 
+A transformation is an operation that creates a new RDD/DataFrame from an existing one.
+# Examples of transformations
+
+map() 
+
+filter()
+
+flatMap()
+
+groupBy()
+
+select()
+
+where()
+
+join()
+
+orderBy()
+
+repartition()
+
+coalesce()
+
+An action triggers the execution of the DAG and returns a result.
+
+Examples of actions
+
+collect()
+
+show()
+
+count()
+
+first()
+
+take()
+
+saveAsTextFile()
+
+write() (for DataFrame)
+
+reduce()
+
+# 6.2 Examples of Common Transformations and Actions:
+# Map:
+Applies a function to each element
+<img width="840" height="637" alt="image" src="https://github.com/user-attachments/assets/2a413339-7039-4d81-972c-035fe0061d5b" />
+
+# Filter:
+Filter the element based on the given condition
+<img width="743" height="644" alt="image" src="https://github.com/user-attachments/assets/65cef3fa-387e-4431-a6b7-de44092abb41" />
+
+# Joins:
+A JOIN combines two DataFrames based on a common/key column.
+<img width="743" height="645" alt="image" src="https://github.com/user-attachments/assets/fbaae850-76e6-4684-987c-9d03d9e13b42" />
+
+# Order by:
+It will return the values as ascending or descending order.
+<img width="826" height="607" alt="image" src="https://github.com/user-attachments/assets/95e82328-6a95-406c-aebc-5fb9f254b50c" />
+
+# Group by:
+It will group the results.
+
+<img width="1030" height="609" alt="image" src="https://github.com/user-attachments/assets/0a0cc0f6-c10d-45ea-b8fb-3d426ad14f4c" />
+
+
+
+
+
+
+
 
