@@ -225,8 +225,8 @@ It will return the values as ascending or descending order.
 
 # Group by:
 It will group the results.
+<img width="1022" height="601" alt="image" src="https://github.com/user-attachments/assets/9cfc3db0-daf7-4d10-a523-d534a57a4d57" />
 
-<img width="1030" height="609" alt="image" src="https://github.com/user-attachments/assets/0a0cc0f6-c10d-45ea-b8fb-3d426ad14f4c" />
 
 
 
