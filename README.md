@@ -227,11 +227,50 @@ It will return the values as ascending or descending order.
 It will group the results.
 <img width="1022" height="601" alt="image" src="https://github.com/user-attachments/assets/9cfc3db0-daf7-4d10-a523-d534a57a4d57" />
 
+# 7 Revision on Spark RDDs:
+  # 7.1 Overview of RDDs in PySpark
+RDD (Resilient Distributed Dataset) is the fundamental data structure in Spark.It is a distributed collection of data, processed in parallel across multiple nodes in a cluster.
+# 7.2 Differences between RDDs and DataFrames:
+| **Feature**         | **RDD**                                                    | **DataFrame**                                       |
+| ------------------- | ---------------------------------------------------------- | --------------------------------------------------- |
+| **Definition**      | Low-level distributed data structure                       | High-level tabular data structure                   |
+| **Schema**          | No schema (unstructured data)                              | Has schema (columns + datatypes)                    |
+| **Ease of Use**     | Complex (requires custom code using map, filter, reduce)   | Very easy (SQL-like operations, built-in functions) |
+| **Optimization**    | No automatic optimization                                  | Optimized by Catalyst Optimizer                     |
+| **Speed**           | Slower                                                     | Much faster                                         |
+| **Memory Usage**    | High                                                       | Low (uses Tungsten engine for optimized memory)     |
+| **APIs Supported**  | Only functional APIs (map, flatMap, reduce)                | SQL API, DataFrame API, MLlib                       |
+| **Error Handling**  | Harder (no schema validation)                              | Easier (schema checks errors early)                 |
+| **Use Cases**       | Unstructured data, low-level transformations, custom logic | Structured data, analytics, ETL pipelines           |
+| **Lazy Evaluation** | Yes                                                        | Yes                                                 |
+
+# 8 Data Structures in PySpark:
+PySpark mainly works with the following distributed data structures:
+RDD (Resilient Distributed Dataset):Low-level distributed list
+
+DataFrame:Distributed table with schema
+
+Row:Single record in DataFrame
+
+Column:Expression representing a column
+
+<img width="756" height="604" alt="image" src="https://github.com/user-attachments/assets/86faf59d-8a1a-46b3-8e19-e1d4a043722c" />
+
+<img width="644" height="643" alt="image" src="https://github.com/user-attachments/assets/2654956e-80f0-49e6-ac18-02b2f50388cf" />
 
 
+# 9 SparkContext:
+SparkContext is the core entry point for low-level Spark functionality.It allows you to work with RDDs, manage cluster resources, and communicate with the Spark cluster.Today, most applications use SparkSession, but SparkContext still exists inside SparkSession and is used for RDD operations.
 
+# 9.1 The Role of SparkContext in PySpark Applications:
+It is the main entry point to Spark's lower-level API (RDD API). It connects your PySpark application to the Spark cluster. It is responsible for:
+Creating RDDs
 
+Managing workers/executors
 
+Distributing tasks
+
+Coordinating jobs and stages
 
 
 
