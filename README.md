@@ -297,7 +297,9 @@ Adding Columns: df.withColumn('new_col', df['salary']*2)
 
 # PySpark SQL
 # Integration of SQL Queries with PySpark
+
 PySpark allows SQL queries on DataFrames.
+
 Provides flexibility to use familiar SQL syntax.
 
 # Registering DataFrames as Temporary SQL Tables
