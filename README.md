@@ -331,8 +331,11 @@ spark = SparkSession.builder.appName("CacheExample").getOrCreate()
 
 data = [
     (1, "Alice", 4000),
+    
     (2, "Bob", 5000),
+    
     (3, "Charlie", 4500),
+    
     (4, "David", 7000)
 ]
 columns = ["ID", "Name", "Salary"]
@@ -424,6 +427,7 @@ from pyspark.sql.functions import col
 spark = SparkSession.builder.appName("CachePersistExample").getOrCreate()
 
 data = [
+
     (101, "Alice", "IT", 50000),
     
     (102, "Bob", "HR", 40000),
