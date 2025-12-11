@@ -435,13 +435,16 @@ df = spark.createDataFrame(data, columns)
 
 # Cache example
 df.cache()
+
 df.count()
 
 # Persist example
 df.persist(StorageLevel.MEMORY_AND_DISK)
+
 df.show()
 
 # Unpersist
+
 df.unpersist()
 
 
