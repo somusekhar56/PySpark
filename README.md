@@ -304,10 +304,13 @@ Provides flexibility to use familiar SQL syntax.
 # Register DataFrame as temp table
 df.createOrReplaceTempView("employees")
 # Execute SQL query
+
 result = spark.sql("SELECT name, salary FROM employees WHERE age > 25")
+
 result.show()
 
 Temporary views are session-scoped.
+
 Useful for complex SQL queries on DataFrames.
 
 # Persist and Cache in PySpark
