@@ -367,44 +367,58 @@ df.persist(storageLevel)
 | **MEMORY_AND_DISK_SER** | Stores data **serialized in memory**; if memory insufficient, spills **serialized** data to disk.                                           |
 | **OFF_HEAP**            | Stores data in **off-heap memory (outside JVM heap)**. Requires extra configuration. Good for Tungsten engine.                              |
 
-Example:
+# Example:
+
 from pyspark import StorageLevel
 
 # Persist DataFrame with MEMORY_AND_DISK
+
 df.persist(StorageLevel.MEMORY_AND_DISK)
 
 # Trigger caching
+
 df.count()
 
 # Reuse without recomputation
 df.filter(col("Salary") > 4500).show()
-Difference Between cache() and persist()
-Feature	cache()	persist()
-Storage level	MEMORY_ONLY	Customizable (e.g., MEMORY_AND_DISK, DISK_ONLY, etc.)
-Flexibility	Less	More
-Usage	Simple and quick caching	When data is large or memory is limited
-Example	df.cache()	df.persist(StorageLevel.MEMORY_AND_DISK)
-Removing Cached/Persisted Data
+
+# Difference Between cache() and persist()
+| **Feature**               | **cache()**                           | **persist()**                                                              |
+| ------------------------- | ------------------------------------- | -------------------------------------------------------------------------- |
+| **Default Storage Level** | **MEMORY_ONLY**                       | **Customizable** (e.g., MEMORY_AND_DISK, DISK_ONLY, MEMORY_ONLY_SER, etc.) |
+| **Flexibility**           | Less flexible                         | More flexible                                                              |
+| **When to Use**           | When data fits comfortably in memory  | When data is large or memory is limited                                    |
+| **Performance**           | Faster (keeps deserialized objects)   | May be slower depending on storage level (serialization may happen)        |
+| **Control Over Storage**  | No control (always MEMORY_ONLY)       | Full control (choose level using StorageLevel)                             |
+| **If Memory Is Full**     | Missing partitions are **recomputed** | Missing partitions are **spilled to disk** (if MEMORY_AND_DISK)            |
+| **Code Example**          | `df.cache()`                          | `df.persist(StorageLevel.MEMORY_AND_DISK)`                                 |
+
+
+# Removing Cached/Persisted Data
+
 You can uncache or remove persisted data to free up memory:
-
 df.unpersist()
-When to Use
+
+# When to Use
 Use cache() when:
+*Dataset fits easily in memory.
 
-Dataset fits easily in memory.
-It is reused multiple times in your job.
-Use persist() when:
+*It is reused multiple times in your job.
+# Use persist() when:
+*Dataset is large or partially reused.
 
-Dataset is large or partially reused.
-You need a custom storage level (e.g., MEMORY_AND_DISK).
-Performance Tip
+*You need a custom storage level (e.g., MEMORY_AND_DISK).
+# Performance Tip
 Always perform a lazy action (like count(), show(), or collect()) after calling cache() or persist() to materialize the dataset — otherwise, it won’t actually be stored yet.
 
 df.cache()
 df.count()   # triggers computation and stores data
-Example Summary Code
+
+# Example Summary Code
 from pyspark.sql import SparkSession
+
 from pyspark import StorageLevel
+
 from pyspark.sql.functions import col
 
 spark = SparkSession.builder.appName("CachePersistExample").getOrCreate()
