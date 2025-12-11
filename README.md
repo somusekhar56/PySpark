@@ -288,6 +288,22 @@ Supports SQL queries, transformations, and actions.
 
 # Operations on DataFrames
 Filtering: df.filter(df['age'] > 25)
+<img width="844" height="601" alt="image" src="https://github.com/user-attachments/assets/6a6ff065-016b-417c-b873-38da7ac888ef" />
+
+Filtering: df.filter(df['age'] > 20)
+<img width="974" height="596" alt="image" src="https://github.com/user-attachments/assets/3a7cf8e0-d1a4-4e19-90d9-ce94a18475e4" />
+
+df.select(avg(df.age)).show()
+<img width="972" height="633" alt="image" src="https://github.com/user-attachments/assets/bff41fa1-5286-4b68-97eb-9a45ad8448ea" />
+# Adding coloumn
+df = df.withColumn("doubleage",df.age * 2).show()
+<img width="696" height="576" alt="image" src="https://github.com/user-attachments/assets/4fe02d68-45ef-40f2-89aa-9d4dd03e5631" />
+
+df.orderBy(col("age").desc()).show()
+<img width="663" height="628" alt="image" src="https://github.com/user-attachments/assets/8905da90-6607-41b7-be97-60cc0cfb0b69" />
+
+df.groupBy("gender").count().show()
+<img width="1057" height="532" alt="image" src="https://github.com/user-attachments/assets/257c2f28-bb38-43d6-af0e-db47f7fe3e8f" />
 
 Selecting: df.select('name', 'salary')
 
