@@ -272,5 +272,14 @@ Distributing tasks
 
 Coordinating jobs and stages
 
+# 10. PySpark DataFrames: 
+A PySpark DataFrame is a distributed collection of data organized in rows and columns, similar to a table in a database or an Excel sheet.
+It is built on top of the Spark SQL engine, meaning:
+
+It supports SQL queries
+
+It automatically handles optimizations using Catalyst Optimizer
+
+It is faster than RDDs due to optimized execution
 
 
