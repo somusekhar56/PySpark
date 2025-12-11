@@ -425,8 +425,11 @@ spark = SparkSession.builder.appName("CachePersistExample").getOrCreate()
 
 data = [
     (101, "Alice", "IT", 50000),
+    
     (102, "Bob", "HR", 40000),
+    
     (103, "Charlie", "Finance", 55000),
+    
     (104, "David", "IT", 60000)
 ]
 columns = ["ID", "Name", "Dept", "Salary"]
