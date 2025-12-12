@@ -508,6 +508,10 @@ Counts total rows.
 
 <img width="712" height="636" alt="image" src="https://github.com/user-attachments/assets/615b1080-dc3d-44c7-a98e-21be904709cd" />
 
+# select()
+Selects specific columns.
+df.select("id", "name").show()
+
 
 
 
