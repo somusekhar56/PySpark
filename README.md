@@ -516,6 +516,15 @@ Selects specific columns.
 
 df.select("id", "name").show()
 
+<img width="735" height="605" alt="image" src="https://github.com/user-attachments/assets/907a7f68-178e-46a4-8a02-8b11be7cd67d" />
+
+# filter() / where():
+Filters based on conditions.
+
+df.filter(col("age") > 30).show()
+df.where(col("dept") == "IT").show()
+
+
 
 
 
