@@ -491,17 +491,20 @@ Returns all rows as a list of Row objects.
 
 # take(n):
 df.take(2)
+
 Takes the first n rows.
 
 <img width="754" height="642" alt="image" src="https://github.com/user-attachments/assets/3ff03705-3c99-4032-b782-0531e50e8a85" />
 
 # printSchema()
 df.printSchema()
+
 Displays column structure.
 
 <img width="1091" height="627" alt="image" src="https://github.com/user-attachments/assets/74c1c4cf-b522-439a-a13a-f51def6d5552" />
 
 # count():
+
 df.count()
 
 Counts total rows.
@@ -510,6 +513,7 @@ Counts total rows.
 
 # select()
 Selects specific columns.
+
 df.select("id", "name").show()
 
 
