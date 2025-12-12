@@ -694,6 +694,81 @@ df.select(repeat(trim(col("Name")), 2).alias("Repeat_Name")).show()
 
 <img width="935" height="631" alt="image" src="https://github.com/user-attachments/assets/b732a40e-da8f-4c48-9d0f-3332bbe1bf30" />
 
+# rpad():
+Pad the string on the RIGHT side to a fixed length.
+
+df.select(rpad(trim(col("Name")), 10, "*").alias("Rpad_Name")).show()
+
+<img width="905" height="604" alt="image" src="https://github.com/user-attachments/assets/29891b30-9572-42db-9c37-3eabcdc2cf76" />
+
+# lpad():
+Purpose: Pads the string to the left with a specific character.
+
+df.select(lpad(trim(col("Name")), 10, "#").alias("Lpad_Name")).show()
+
+<img width="973" height="628" alt="image" src="https://github.com/user-attachments/assets/30bb9d17-a763-4162-8383-fb7db9d5bd78" />
+
+# regex_replace():
+
+Purpose: Replaces matching substrings using a regular expression.
+
+df.select(regexp_replace(col("Username"), "[^a-zA-Z]", "").alias("Clean_Username")).show()
+
+<img width="964" height="639" alt="image" src="https://github.com/user-attachments/assets/ba59db28-d176-4340-9bf4-2b397b45601d" />
+
+# lower():
+
+Purpose: Converts string to lowercase.
+
+df.select(lower(col("Departments")).alias("Lower_Dept")).show()
+
+<img width="839" height="631" alt="image" src="https://github.com/user-attachments/assets/dc87107d-a27f-4023-91a9-098795242eb4" />
+
+# regexp_extract()
+
+Purpose: Extracts substring using a regular expression.
+
+df.select(regexp_extract(col("Username"), r"[A-Za-z]+", 0).alias("Extracted_Text")).show()
+
+<img width="990" height="620" alt="image" src="https://github.com/user-attachments/assets/a1688e4e-5081-4840-86a2-4c6ca60f3b64" />
+
+# length()
+
+Purpose: Returns length of the string.
+
+df.select(length(trim(col("Name"))).alias("Name_Length")).show()
+
+<img width="887" height="633" alt="image" src="https://github.com/user-attachments/assets/df9c26a2-d13b-45ac-b281-2cab6f3be351" />
+
+# instr()
+
+Purpose: Returns the position of substring.
+
+df.select(instr(col("Departments"), "IT").alias("IT_Position")).show()
+
+<img width="955" height="622" alt="image" src="https://github.com/user-attachments/assets/e7bdc064-a834-4a53-86bf-60464f6d2669" />
+
+# initcap()
+
+Purpose: Converts the first letter of each word to uppercase.
+
+df.select(initcap(lower(col("Departments"))).alias("Initcap_Dept")).show()
+
+<img width="944" height="612" alt="image" src="https://github.com/user-attachments/assets/61ca2d9d-04dc-4682-a199-ada1f36270e1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
