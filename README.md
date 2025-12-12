@@ -650,7 +650,51 @@ df.select(trim("name")).show()
 # ltrim():
 Removes spaces from the left side.
 
+df.select(ltrim("name")).show()
+
 <img width="950" height="636" alt="image" src="https://github.com/user-attachments/assets/fb8a0f62-0b7d-4f2f-87d2-c17e6b202c99" />
+
+# rtrim():
+Removes spaces from the right side.
+
+df.select(rtrim("name")).show()
+
+<img width="866" height="638" alt="image" src="https://github.com/user-attachments/assets/585276e2-f432-415a-9dd0-1ee96d5bd7e4" />
+
+# substring_index():
+Split the string by a delimiter and return part before/after delimiter.
+
+df.select(substring_index(col("Departments"), ",", 1).alias("Main_Dept")).show()
+df.select(substring_index(col("Departments"), ",", -1).alias("Main_Dept")).show()
+
+<img width="972" height="628" alt="image" src="https://github.com/user-attachments/assets/761d73e5-054d-4668-b37e-f6e7cc3eb3ab" />
+
+<img width="999" height="629" alt="image" src="https://github.com/user-attachments/assets/e11f53e7-63f7-4055-b066-d2e174a71748" />
+
+
+# substring():
+Extract characters from specific position.Extracts part of a string based on position.
+
+df.select(substring(col("Username"), 1, 5).alias("Sub_Username")).show()
+
+<img width="957" height="605" alt="image" src="https://github.com/user-attachments/assets/f06e597f-5a2b-41a2-9830-12567249d896" />
+
+# split():
+Splits a string into an array.
+
+df.select(split(col("Departments"), ",").alias("Split_Dept")).show(truncate=False)
+
+
+<img width="913" height="641" alt="image" src="https://github.com/user-attachments/assets/84a2fe51-6cec-499d-98f5-f7abf9c160ac" />
+
+# repeat():
+Repeats the string N times.
+
+df.select(repeat(trim(col("Name")), 2).alias("Repeat_Name")).show()
+
+<img width="935" height="631" alt="image" src="https://github.com/user-attachments/assets/b732a40e-da8f-4c48-9d0f-3332bbe1bf30" />
+
+
 
 
 
