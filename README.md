@@ -478,6 +478,7 @@ df.unpersist()
 # 13. General DataFrame Functions: 
 # show()
 Displays the entire DataFrame.
+
 <img width="628" height="599" alt="image" src="https://github.com/user-attachments/assets/52600788-84be-45d0-94de-5e3779bef099" />
 
 # collect()
