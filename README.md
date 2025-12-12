@@ -476,6 +476,22 @@ df.show()
 df.unpersist()
 
 # 13. General DataFrame Functions: 
+
+
+| Function         | Purpose                     |
+| ---------------- | --------------------------- |
+| show()           | Display the DataFrame       |
+| collect()        | Bring all rows to driver    |
+| take(n)          | Get first n rows            |
+| printSchema()    | Show structure of DataFrame |
+| count()          | Number of rows              |
+| select()         | Choose specific columns     |
+| filter()/where() | Filter rows                 |
+| like()           | Pattern matching            |
+| sort()           | Sorting rows                |
+| describe()       | Summary statistics          |
+| columns          | List of column names        |
+
 # show()
 df.show()
 Displays the entire DataFrame.
@@ -522,7 +538,135 @@ df.select("id", "name").show()
 Filters based on conditions.
 
 df.filter(col("age") > 30).show()
+
+<img width="904" height="608" alt="image" src="https://github.com/user-attachments/assets/fb932ada-b323-43c5-9962-9583ad60bf86" />
+
 df.where(col("dept") == "IT").show()
+
+<img width="993" height="605" alt="image" src="https://github.com/user-attachments/assets/7233000a-2188-478e-bdd3-40f7b3aec303" />
+
+# like():
+
+# Names starting with 'A'
+
+df.filter(df.name.like("A%")).show()
+
+# Names ending with 'e'
+
+df.filter(df.name.like("%e")).show()
+
+# Names containing 'a'
+
+df.filter(df.name.like("%a%")).show()
+
+# Department starting with 'F'
+
+df.filter(df.dept.like("F%")).show()
+
+like() is used to filter rows based on pattern matching
+
+<img width="825" height="629" alt="image" src="https://github.com/user-attachments/assets/c6295a80-2ffb-43cf-aea2-6fa1221376f9" />
+
+# sort():
+used to arrange rows in ascending or descending order based on one or more columns.
+Sort by salary (ascending)
+
+df.sort("sal").show()
+
+<img width="715" height="603" alt="image" src="https://github.com/user-attachments/assets/a7edf59e-5ce1-4f56-beda-9131ad8abe55" />
+
+# Sort by salary (descending)
+
+df.sort(df.sal.desc()).show()
+
+# Sort by department, then salary (multi-column sort)
+
+df.sort("dept", "sal").show()
+
+# Sort by age descending
+
+df.describe().show()
+
+df.sort(df.age.desc()).show()
+
+# describe()
+
+df.describe("sal", "age").show()
+
+describe() is a DataFrame function that gives summary statistics (basic statistical information) for numeric columns and sometimes string columns.
+
+It returns:
+
+count → number of rows
+
+mean → average
+
+stddev → standard deviation
+
+min → minimum value
+
+max → maximum value
+
+It is similar to DESCRIBE or SUMMARY in SQL.
+
+<img width="875" height="612" alt="image" src="https://github.com/user-attachments/assets/07cf49fd-1a9a-4286-ad0f-6253cd21f913" />
+
+# columns()
+
+A column is a named field in a DataFrame,
+
+columns is NOT a function, it is a property.
+
+So you should NOT use parentheses ().
+
+<img width="871" height="636" alt="image" src="https://github.com/user-attachments/assets/2049e4e1-29bd-4bf9-89c1-bf61d0b582d8" />
+
+# Dataset 2 — String Functions
+
+data = [
+    (1, "  alice  ", "HR,Admin", "Alice123"),
+    (2, "bob", "IT,Support", "B@b_2025"),
+    (3, "  CHARLIE", "Finance,Audit", "Ch@rlie#99"),
+    (4, "DAVID  ", "IT,Security", "David!!"),
+    (5, "eve", "HR,Training", "EvE2024")
+]
+cols = ["ID", "Name", "Departments", "Username"]
+df = spark.createDataFrame(data, cols)
+
+# upper()
+Converts a string to uppercase.
+
+df.select(upper("name")).show()
+
+<img width="959" height="641" alt="image" src="https://github.com/user-attachments/assets/4c9723e8-65f5-4404-bfc1-84bd28513b11" />
+
+# trim():
+Removes spaces from both sides.
+
+df.select(trim("name")).show()
+
+<img width="882" height="612" alt="image" src="https://github.com/user-attachments/assets/7bd27045-cafb-453b-a599-2da5d1bc5350" />
+
+# ltrim():
+Removes spaces from the left side.
+
+<img width="950" height="636" alt="image" src="https://github.com/user-attachments/assets/fb8a0f62-0b7d-4f2f-87d2-c17e6b202c99" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
