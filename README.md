@@ -477,11 +477,40 @@ df.unpersist()
 
 # 13. General DataFrame Functions: 
 # show()
+df.show()
 Displays the entire DataFrame.
 
 <img width="628" height="599" alt="image" src="https://github.com/user-attachments/assets/52600788-84be-45d0-94de-5e3779bef099" />
 
 # collect()
+df.collect()
+
+Returns all rows as a list of Row objects.
+
+<img width="1033" height="633" alt="image" src="https://github.com/user-attachments/assets/a8dc10a0-893f-4b6a-aec0-df005e48602e" />
+
+# take(n):
+df.take(2)
+Takes the first n rows.
+
+<img width="754" height="642" alt="image" src="https://github.com/user-attachments/assets/3ff03705-3c99-4032-b782-0531e50e8a85" />
+
+# printSchema()
+df.printSchema()
+Displays column structure.
+
+<img width="1091" height="627" alt="image" src="https://github.com/user-attachments/assets/74c1c4cf-b522-439a-a13a-f51def6d5552" />
+
+# count():
+df.count()
+
+Counts total rows.
+
+<img width="712" height="636" alt="image" src="https://github.com/user-attachments/assets/615b1080-dc3d-44c7-a98e-21be904709cd" />
+
+
+
+
 
 
 
