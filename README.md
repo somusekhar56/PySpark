@@ -804,6 +804,93 @@ df.select(abs(col("Salary") - 5500).alias("Abs_Diff")).show()
 
 <img width="972" height="645" alt="image" src="https://github.com/user-attachments/assets/2a55aeaf-3f51-403b-9592-87a0609df0c0" />
 
+# 16. Date and Time Functions: 
+
+| Function              | Purpose                              |
+| --------------------- | ------------------------------------ |
+| `CURRENT_DATE()`      | Returns current date                 |
+| `CURRENT_TIMESTAMP()` | Returns current date & time          |
+| `DATE_ADD()`          | Adds days to a date                  |
+| `DATEDIFF()`          | Difference between two dates in days |
+| `YEAR()`              | Extracts year                        |
+| `MONTH()`             | Extracts month                       |
+| `DAY()`               | Extracts day                         |
+| `TO_DATE()`           | Converts string/timestamp to date    |
+| `DATE_FORMAT()`       | Formats date as string               |
+
+
+# 16.1 CURRENT_DATE()
+
+df.select(current_date().alias("today_date")).show()
+
+<img width="811" height="643" alt="image" src="https://github.com/user-attachments/assets/f481086c-71ed-4ef2-b998-b82b65fb848e" />
+
+# CURRENT_TIMESTAMP()
+
+df.select(current_timestamp().alias("current_time")).show()
+
+<img width="950" height="642" alt="image" src="https://github.com/user-attachments/assets/cd5ef0a9-2489-41bd-9b44-d6472961e565" />
+
+# DATE_ADD()
+
+df.select(date_add(current_date(), 7).alias("after_7_days")).show()
+
+<img width="724" height="646" alt="image" src="https://github.com/user-attachments/assets/abbce7b1-4550-42c9-9a20-ba43325547ec" />
+
+# DATEDIFF()
+
+df.select(datediff(current_date(), "2025-01-01").alias("days_diff")).show()
+
+df.select(datediff(current_date(), lit("2025-01-01")).alias("days_diff")).show()
+
+<img width="970" height="646" alt="image" src="https://github.com/user-attachments/assets/c36a8d31-1d40-4dcc-b9df-17bbd4f664e7" />
+
+# YEAR()
+df.select(year(current_date()).alias("year")).show()
+
+<img width="890" height="637" alt="image" src="https://github.com/user-attachments/assets/fba3a050-af50-4668-b660-836d07acc4d0" />
+
+# MONTH() and DAY() 
+
+df.select(month(current_date()).alias("month")).show()
+
+df.select(dayofmonth(current_date()).alias("day")).show()
+
+<img width="879" height="639" alt="image" src="https://github.com/user-attachments/assets/1374d12e-8021-48e9-aecd-02d0acc69df5" />
+
+<img width="872" height="633" alt="image" src="https://github.com/user-attachments/assets/abb82da6-8b8b-43c0-8e3f-44df0970a0b7" />
+
+<img width="830" height="635" alt="image" src="https://github.com/user-attachments/assets/b728f97f-6f78-455e-8edb-528c8762cbc0" />
+
+
+# TO_DATE()
+
+df.select(to_date("2025-12-15").alias("converted_date")).show()
+
+df.select(to_date(lit("2025-12-15")).alias("converted_date")).show()
+
+<img width="737" height="639" alt="image" src="https://github.com/user-attachments/assets/a5ab376b-ee78-462e-8a31-6fcb8f99d000" />
+
+# DATE_FORMAT()
+
+df.select(date_format(current_date(), "dd-MMM-yyyy").alias("formatted_date")).show()
+
+
+<img width="873" height="640" alt="image" src="https://github.com/user-attachments/assets/666b5ed0-1d2c-468c-bb01-4b7b2c2e0b51" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
