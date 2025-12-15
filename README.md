@@ -756,6 +756,26 @@ df.select(initcap(lower(col("Departments"))).alias("Initcap_Dept")).show()
 
 <img width="944" height="612" alt="image" src="https://github.com/user-attachments/assets/61ca2d9d-04dc-4682-a199-ada1f36270e1" />
 
+# 15. Numeric Functions
+
+| **Function** | **Purpose**                                       | **Example**                                       |
+| ------------ | ------------------------------------------------- | ------------------------------------------------- |
+| `SUM()`      | Calculates the total sum of a numeric column      | `SUM(salary)` → total salary                      |
+| `AVG()`      | Calculates the average (mean) of a numeric column | `AVG(salary)` → average salary                    |
+| `MIN()`      | Returns the minimum value in a numeric column     | `MIN(salary)` → smallest salary                   |
+| `MAX()`      | Returns the maximum value in a numeric column     | `MAX(salary)` → largest salary                    |
+| `ROUND()`    | Rounds numeric values to specified decimal places | `ROUND(salary, 2)` → salary rounded to 2 decimals |
+| `ABS()`      | Returns absolute value of a number                | `ABS(-500)` → 500                                 |
+
+# 15.1 SUM():
+
+df.agg(sum("Salary").alias("Total_Salary")).show()
+
+
+<img width="850" height="606" alt="image" src="https://github.com/user-attachments/assets/61258442-3a22-43f5-9ec9-92b5591298d8" />
+
+
+
 
 
 
