@@ -774,6 +774,44 @@ df.agg(sum("Salary").alias("Total_Salary")).show()
 
 <img width="850" height="606" alt="image" src="https://github.com/user-attachments/assets/61258442-3a22-43f5-9ec9-92b5591298d8" />
 
+# AVG()
+
+df.agg(avg("Salary").alias("Avg_Salary")).show()
+
+<img width="958" height="639" alt="image" src="https://github.com/user-attachments/assets/e6b7ede8-f154-479d-9c35-d0e371768c01" />
+
+# MIN()
+
+df.agg(min("Salary").alias("Min_Salary")).show()
+
+<img width="996" height="637" alt="image" src="https://github.com/user-attachments/assets/96ef34c1-bb3b-41d5-8814-71c886ad8a30" />
+
+# MAX()
+
+df.agg(max("Salary").alias("Max_Salary")).show()
+
+<img width="847" height="638" alt="image" src="https://github.com/user-attachments/assets/46352595-7745-4817-9587-48518baa3349" />
+
+# ROUND()
+
+df.select(round("Salary", -3).alias("Rounded_Salary")).show()
+
+<img width="856" height="640" alt="image" src="https://github.com/user-attachments/assets/0fec68fc-e9a3-4319-8e9e-c384be6f5198" />
+
+# ABS()
+
+df.select(abs(col("Salary") - 5500).alias("Abs_Diff")).show()
+
+<img width="972" height="645" alt="image" src="https://github.com/user-attachments/assets/2a55aeaf-3f51-403b-9592-87a0609df0c0" />
+
+
+
+
+
+
+
+
+
 
 
 
