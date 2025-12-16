@@ -1003,6 +1003,67 @@ df.join(df1, "dept_id", "inner").show()
 
 <img width="668" height="658" alt="image" src="https://github.com/user-attachments/assets/c5be34f2-942d-4e70-ba3d-44e7597e599e" />
 
+# Explanation:
+Only employees whose dept_id matches a department appear here. Missing departments (107, 108) are excluded.
+
+# 18.2 LEFT JOIN
+df.join(df1, "dept_id", "left").orderBy("emp_id").show()
+
+<img width="846" height="630" alt="image" src="https://github.com/user-attachments/assets/1fa467e3-7465-4a0f-bb50-76ed02993644" />
+
+# Explanation:
+All employees appear. Dept columns are null where no matching dept (107, 108).
+
+# 18.3 RIGHT JOIN
+df.join(df1, "dept_id", "right").show()
+
+<img width="700" height="641" alt="image" src="https://github.com/user-attachments/assets/26012bd0-c908-40f6-b9dd-8f1cca11f2a0" />
+
+# Explanation:
+All departments appear; missing employees are filled with null (if any dept has no employee).
+
+# 18.4 FULL OUTER JOIN
+df.join(df1, "dept_id", "outer").orderBy("emp_id").show()
+
+<img width="786" height="632" alt="image" src="https://github.com/user-attachments/assets/40bcd1ea-5f25-47a8-bf58-611df3ece937" />
+
+# Explanation:
+Returns all records — matched or unmatched from both sides.
+
+# 18.5 CROSS JOIN
+df.crossJoin(df1).show(5)
+
+Output (first 5 rows):
+
+<img width="945" height="648" alt="image" src="https://github.com/user-attachments/assets/700f2554-6a19-4019-bce6-7e97f0168136" />
+
+# Explanation:
+Cartesian product — every employee paired with every department.
+
+# 18.6 LEFT SEMI JOIN
+
+dfpython.join(df1, "dept_id", "left_semi").show()
+
+<img width="902" height="647" alt="image" src="https://github.com/user-attachments/assets/620abe01-8a51-4407-a700-3ea56a5b8d84" />
+
+# Explanation:
+Returns only employees having a matching department (like filter inner join, but returns only left columns).
+
+# 18.7 LEFT ANTI JOIN
+df.join(df1, "dept_id", "left_anti").show()
+
+<img width="781" height="646" alt="image" src="https://github.com/user-attachments/assets/c0b4e0ac-878e-4999-92f8-b35fa9d1518f" />
+
+# Explanation:
+Shows employees whose department doesn’t exist in department table.
+
+
+
+
+
+
+
+
 
 
 
