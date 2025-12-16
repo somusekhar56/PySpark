@@ -946,28 +946,46 @@ spark = SparkSession.builder.appName("practice").getOrCreate()
 
 data_emp = [
     (1, "Aarav", 101, 45000.75),
+    
     (2, "Isha", 102, 60000.20),
+    
     (3, "Rohan", 101, 52000.60),
+    
     (4, "Meera", 103, 48000.40),
+    
     (5, "Arjun", 104, 75000.00),
+    
     (6, "Priya", 101, 50000.00),
+    
     (7, "Kiran", 102, 65000.90),
+    
     (8, "Diya", 105, 40000.50),
+    
     (9, "Manav", 106, 39000.25),
+    
     (10, "Sneha", 107, 47000.00),
+    
     (11, "Varun", 103, 58000.35),
     (12, "Asha", 104, 72000.10),
+    
     (13, "Vivek", 105, 51000.00),
+    
     (14, "Riya", 106, 43000.70),
+    
     (15, "Neel", 108, 62000.55)
 ]
 
 data_dept = [
     (101, "HR", "Mumbai"),
+    
     (102, "IT", "Bangalore"),
+    
     (103, "Finance", "Pune"),
+    
     (104, "Marketing", "Delhi"),
+    
     (105, "Operations", "Chennai"),
+    
     (106, "Admin", "Hyderabad")
 ]
 
