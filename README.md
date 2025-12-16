@@ -878,6 +878,14 @@ df.select(date_format(current_date(), "dd-MMM-yyyy").alias("formatted_date")).sh
 
 <img width="873" height="640" alt="image" src="https://github.com/user-attachments/assets/666b5ed0-1d2c-468c-bb01-4b7b2c2e0b51" />
 
+# 17. Aggregate Functions
+# 17.1 mean()
+
+from pyspark.sql.functions import mean, avg, round
+
+<img width="933" height="604" alt="image" src="https://github.com/user-attachments/assets/3e3f3f58-2aec-4c21-8acc-8921d7095966" />
+
+17.2 avg()
 
 
 
