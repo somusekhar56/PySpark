@@ -885,7 +885,119 @@ from pyspark.sql.functions import mean, avg, round
 
 <img width="933" height="604" alt="image" src="https://github.com/user-attachments/assets/3e3f3f58-2aec-4c21-8acc-8921d7095966" />
 
-17.2 avg()
+# 17.2 avg()
+
+df.agg(avg("salary").alias("avg_salary")).show()
+
+<img width="769" height="605" alt="image" src="https://github.com/user-attachments/assets/597df3d2-cd51-47b8-9400-621620ba0e3e" />
+
+# 3.3 collect_list()
+
+df.groupBy("departments").agg(collect_list("Name").alias("dept_vise_names")).show()
+
+<img width="998" height="631" alt="image" src="https://github.com/user-attachments/assets/11811803-aa8d-478e-8bee-0df305990066" />
+
+# 17.4 collect_set(): 
+
+df.groupBy("dept").agg(collect_set("reg").alias("dept_vise_reg")).show()
+
+<img width="884" height="634" alt="image" src="https://github.com/user-attachments/assets/5a90b6a9-7a0c-48bc-abb7-b067bdfeeb72" />
+
+# 17.5 countDistinct()
+
+df.groupBy("dept").agg(count_distinct("Name").alias("dept_vise_name_count")).show()
+
+<img width="940" height="639" alt="image" src="https://github.com/user-attachments/assets/be12fc0a-ae83-42a1-be63-d8d795b2b579" />
+
+# count()
+
+df.groupBy("departments").agg(count("Name").alias("dept_wise_count")).show()
+<img width="940" height="639" alt="image" src="https://github.com/user-attachments/assets/be12fc0a-ae83-42a1-be63-d8d795b2b579" />
+
+# first()
+df1=df.groupBy("departments").agg(first("Name").alias("dept_wise_firstname")).show()
+
+<img width="782" height="606" alt="image" src="https://github.com/user-attachments/assets/a34c180b-cef8-4592-b342-6f213b0c2ee7" />
+
+# last()
+df1=df.groupBy("departments").agg(last("Name").alias("dept_wise_lastname")).show()
+
+<img width="796" height="637" alt="image" src="https://github.com/user-attachments/assets/7d76b70e-affc-454d-b135-c3133a915236" />
+
+# max(), 3.10 min(), 3.11 sum()
+
+df.agg(max("salary")).alias("max_sal").show()
+
+df.agg(min("salary")).alias("min_sal").show()
+
+df.agg(sum("salary")).alias("total_sal").show()
+
+df.agg(max("sal").alias("max_sal"), min("sal").alias("min_sal"), sum("sal").alias("total_sal")).show()
+
+<img width="1009" height="641" alt="image" src="https://github.com/user-attachments/assets/9ad9e218-04c8-4c98-ba93-345ed21514b1" />
+
+# 18. Joins: 
+JOIN is used to combine data from two or more tables
+
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import *
+
+spark = SparkSession.builder.appName("practice").getOrCreate()
+
+data_emp = [
+    (1, "Aarav", 101, 45000.75),
+    (2, "Isha", 102, 60000.20),
+    (3, "Rohan", 101, 52000.60),
+    (4, "Meera", 103, 48000.40),
+    (5, "Arjun", 104, 75000.00),
+    (6, "Priya", 101, 50000.00),
+    (7, "Kiran", 102, 65000.90),
+    (8, "Diya", 105, 40000.50),
+    (9, "Manav", 106, 39000.25),
+    (10, "Sneha", 107, 47000.00),
+    (11, "Varun", 103, 58000.35),
+    (12, "Asha", 104, 72000.10),
+    (13, "Vivek", 105, 51000.00),
+    (14, "Riya", 106, 43000.70),
+    (15, "Neel", 108, 62000.55)
+]
+
+data_dept = [
+    (101, "HR", "Mumbai"),
+    (102, "IT", "Bangalore"),
+    (103, "Finance", "Pune"),
+    (104, "Marketing", "Delhi"),
+    (105, "Operations", "Chennai"),
+    (106, "Admin", "Hyderabad")
+]
+
+columns_emp = ["emp_id", "name", "dept_id", "salary"]
+
+columns_dept = ["dept_id", "dept_name", "location"]
+
+dF= spark.createDataFrame(data_emp, columns_emp)
+
+df1 = spark.createDataFrame(data_dept, columns_dept)
+
+# 18.1 inner join: 
+
+df.join(df1, "dept_id", "inner").show()
+
+<img width="668" height="658" alt="image" src="https://github.com/user-attachments/assets/c5be34f2-942d-4e70-ba3d-44e7597e599e" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
