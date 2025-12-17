@@ -1057,6 +1057,21 @@ df.join(df1, "dept_id", "left_anti").show()
 # Explanation:
 Shows employees whose department doesn’t exist in department table.
 
+# 19. Mathematical Functions: 
+PySpark mathematical functions are used to perform numeric calculations like rounding, absolute value, power, and logarithmic operations on DataFrame columns.
+
+# 19.1 ABS(): 
+Returns the absolute (positive) value of a number.
+
+df.select("name", abs(col("salary") - 50000).alias("abs_diff")).show(5)
+
+<img width="913" height="637" alt="image" src="https://github.com/user-attachments/assets/aa661b5b-7d62-45f1-ba67-aa3a2f96d362" />
+
+df.select(abs("salary").alias("abs_salary")).show()
+
+<img width="999" height="634" alt="image" src="https://github.com/user-attachments/assets/225680ae-55a0-47f9-8a4b-2304c02fa5fa" />
+
+
 
 
 
