@@ -1071,6 +1071,82 @@ df.select(abs("salary").alias("abs_salary")).show()
 
 <img width="999" height="634" alt="image" src="https://github.com/user-attachments/assets/225680ae-55a0-47f9-8a4b-2304c02fa5fa" />
 
+# 19.2 CEIL (or CEILING):
+Rounds a number UP to the nearest integer.
+
+df.select("name", ceil("salary").alias("ceil_salary")).show(5)  with name
+
+df.select(ceil("salary").alias("ceil_salary")).show()
+
+<img width="975" height="659" alt="image" src="https://github.com/user-attachments/assets/343a97d3-8c28-487d-9723-7a809af47602" />
+
+# 19.3 FLOOR():
+Rounds a number DOWN to the nearest integer.
+
+df.select(floor("salary").alias("floor_salary")).show()
+
+<img width="715" height="637" alt="image" src="https://github.com/user-attachments/assets/c9e89fb5-aadd-42ba-a01c-de3b2225986f" />
+
+# 19.4 EXP()
+
+Returns e raised to the power of x (e ≈ 2.718).
+
+df.select(exp(lit(1)).alias("exp_value")).show()
+
+<img width="863" height="633" alt="image" src="https://github.com/user-attachments/assets/08a4da8e-6ee1-46cf-92a4-98d0387ab863" />
+
+# 19.5 LOG()
+
+Returns natural logarithm (ln) of a number.
+
+df.select(log("salary").alias("log_salary")).show()
+
+<img width="821" height="629" alt="image" src="https://github.com/user-attachments/assets/7716377f-2ce9-48b7-90a6-347b1aceef5d" />
+
+# 19.6 POWER(x, y)
+Raises a number to a given power.
+POWER(x, y) means x raised to power y.
+
+df.select(power("salary", 2).alias("salary_square")).show()
+
+<img width="734" height="636" alt="image" src="https://github.com/user-attachments/assets/dc8e0d00-0536-4404-8054-06125dfe7ee5" />
+
+# SQRT()
+Returns square root of a number.
+df.select(sqrt("salary").alias("sqrt_salary")).show()
+
+<img width="739" height="636" alt="image" src="https://github.com/user-attachments/assets/9adf952f-60e1-491c-89bd-fdfb3bbceb17" />
+
+# 20. Conversion Functions: 
+# 20.1 CAST(): 
+
+Converts a column from one data type to another data type
+
+df.select(col("salary").cast("int").alias("salary_int"))
+
+<img width="647" height="644" alt="image" src="https://github.com/user-attachments/assets/f55af675-c22e-42a0-b20c-3c5e0201dd72" />
+
+# 21. Window Functions: 
+
+Window functions perform calculations across a set of rows related to the current row, without collapsing rows like groupBy.
+
+from pyspark.sql.window import Window
+windowSpec = Window.partitionBy("dept_id").orderBy(col("salary").desc())
+
+4.1 ROW_NUMBER()
+df.withColumn("row_num", row_number().over(windowSpec)).show(5)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
