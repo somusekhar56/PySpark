@@ -1259,6 +1259,30 @@ df_pos_exploded.show()
 <img width="834" height="644" alt="image" src="https://github.com/user-attachments/assets/be222f40-a509-49fb-b11d-f3dc63ea8e3b" />
 
 
+# 24. User Defined Functions (Udf():) 
+User Defined Function (UDF) allows you to write custom Python logic and apply it to Spark DataFrame columns when built-in Spark functions are not enough.
+
+from pyspark.sql.functions import udf
+from pyspark.sql.types import StringType
+
+def upper_case(name):
+
+    return name.upper()
+
+upper_udf = udf(upper_case, StringType())
+
+data = [(1, "alice"), (2, "bob")]
+
+df = spark.createDataFrame(data, ["id", "name"])
+
+df_with_udf = df.withColumn("name_upper", upper_udf("name"))
+
+df_with_udf.show()
+
+<img width="829" height="641" alt="image" src="https://github.com/user-attachments/assets/56154acd-a531-4eca-b588-b3a004aaabe4" />
+
+
+
 
 
 
