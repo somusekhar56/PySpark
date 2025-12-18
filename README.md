@@ -1133,8 +1133,58 @@ Window functions perform calculations across a set of rows related to the curren
 from pyspark.sql.window import Window
 windowSpec = Window.partitionBy("dept_id").orderBy(col("salary").desc())
 
-4.1 ROW_NUMBER()
+21.1 ROW_NUMBER()
+Gives a **unique number** to each row  
+
 df.withColumn("row_num", row_number().over(windowSpec)).show(5)
+
+# 21.2 RANK()
+Gives **same rank for same values** and **skips numbers** 
+
+df.withColumn("rank", rank().over(w)).show()
+
+# DENSE_RANK()
+
+Gives **same rank for same values** without skipping 
+
+df.withColumn("dense_rank", dense_rank().over(w)).show()
+
+# LEAD()
+
+Gets the **next row value** 
+
+df.withColumn("next_salary", lead("Salary").over(w)).show()
+
+# LAG()
+
+Gets the **previous row value**                           
+
+df.withColumn("prev_salary", lag("Salary").over(w)).show()
+
+# 22. Array Functions: 
+
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import *
+
+spark = SparkSession.builder.appName("ArrayFunctions").getOrCreate()
+
+
+# 22.1 ARRAY(): 
+Creates an array column from multiple columns or values.
+
+df.select("name", array("dept", "salary").alias("emp_array")).show()
+
+<img width="810" height="636" alt="image" src="https://github.com/user-attachments/assets/d9761611-dd33-4cdf-9ba3-1a85e5f7dae9" />
+
+# 22.2 ARRAY_CONTAINS(): 
+
+Checks whether an array contains a value.
+
+
+
+
+
+
 
 
 
