@@ -1180,6 +1180,88 @@ df.select("name", array("dept", "salary").alias("emp_array")).show()
 
 Checks whether an array contains a value.
 
+df.withColumn("arr", array(lit(101), lit(102), lit(103))) \
+      .withColumn("check", array_contains(col("arr"), col("dept_id"))).show()
+
+<img width="803" height="604" alt="image" src="https://github.com/user-attachments/assets/8a28d24e-abfe-4015-9517-8f2442888c40" />
+
+# 22.3 ARRAY_LENGTH(): 
+
+Returns size of array.
+
+df.withColumn("arr", array(lit("A"), lit("B"), lit("C"))) \
+      .withColumn("check", array_contains(col("arr"), col("dept"))).show()
+
+<img width="830" height="639" alt="image" src="https://github.com/user-attachments/assets/302d9b89-be4f-4ad6-8d6a-7355c98fdbed" />
+
+# 22.4 ARRAY_POSITION(): 
+
+Returns position of an element in array
+df1 = df.withColumn("arr", array(lit("A"), lit("B"), lit("C")))
+df1.show()
+df1.select("Dept", "Name",array_position(col("arr"),) .alias("position")).show()
+
+<img width="731" height="638" alt="image" src="https://github.com/user-attachments/assets/8af0a1e5-fe29-4b60-aa9a-a48e7f0f1dc9" />
+
+# 22.5 ARRAY_REMOVE(): 
+
+Removes a value from an array
+
+df1 = df.withColumn("arr", array(lit("A"), lit("B"), lit("C"), lit("D")))
+df1.show() 
+df1.select("Dept", "Name", array_remove(col("arr"),"B") .alias("remove")).show()
+
+<img width="938" height="615" alt="image" src="https://github.com/user-attachments/assets/3301caf8-1cfb-49a9-8892-91237ea33837" />
+
+# 23. Explode Array and Maps Functions: 
+Explode functions are used to convert array or map elements into multiple rows (row expansion).
+PySpark provides functions to transform complex data types (arrays, maps) into multiple rows.
+
+# 23.1 explode(): 
+explode() transforms each element in an array or map into a separate row.
+data = [(1, ["apple", "banana"]), (2, ["orange", "grapes"])]
+
+df = spark.createDataFrame(data, ["id", "fruits"])
+
+df_exploded = df.select("id", explode("fruits").alias("fruit"))
+
+df_exploded.show()
+
+<img width="1112" height="642" alt="image" src="https://github.com/user-attachments/assets/40b2656a-8444-4ea3-96e1-bc9c740374e2" />
+
+# 23.2 explode_outer()
+explode_outer() is similar to explode(), but preserves null values instead of dropping them.
+
+data = [(1, ["apple", "banana"]), (2, None)]
+
+df = spark.createDataFrame(data, ["id", "fruits"])
+
+df_exploded_outer = df.select("id", explode_outer("fruits").alias("fruit"))
+
+df_exploded_outer.show()
+
+<img width="761" height="645" alt="image" src="https://github.com/user-attachments/assets/58277120-1f6e-4842-93e8-ce45fe111ba4" />
+
+# 23.3 posexplode_outer(): 
+
+posexplode_outer() returns both the position (index) and value of each element in the array, including nulls.
+
+from pyspark.sql.functions import posexplode_outer
+
+data = [(1, ["apple", "banana"]), (2, None)]
+
+df = spark.createDataFrame(data, ["id", "fruits"])
+
+df_pos_exploded = df.select("id", posexplode_outer("fruits").alias("pos", "fruit"))
+
+df_pos_exploded.show()
+
+<img width="834" height="644" alt="image" src="https://github.com/user-attachments/assets/be222f40-a509-49fb-b11d-f3dc63ea8e3b" />
+
+
+
+
+
 
 
 
