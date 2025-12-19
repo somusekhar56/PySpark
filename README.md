@@ -1281,6 +1281,133 @@ df_with_udf.show()
 
 <img width="829" height="641" alt="image" src="https://github.com/user-attachments/assets/56154acd-a531-4eca-b588-b3a004aaabe4" />
 
+# Different File Formats with Schema
+PySpark allows defining schemas explicitly for structured data. This helps maintain consistent data types and improves performance.
+
+# Schema Definition
+You can define a schema using StructType and StructField.
+
+# StructType
+StructType represents the structure of a DataFrame.
+
+# StructField
+StructField defines individual columns, their data type, and nullability.
+
+# DataType
+DataType specifies the type of each column (StringType, IntegerType, etc.).
+
+# Code Example:
+
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType
+
+schema = StructType([
+
+    StructField("id", IntegerType(), True),
+    
+    StructField("name", StringType(), True),
+    
+    StructField("age", IntegerType(), True)
+])
+data = [
+    (1, "A", 25),
+    
+    (2, "B", 30),
+    
+    (3, "C", 28)
+]
+
+# Create DataFrame using schema
+
+df = spark.createDataFrame(data, schema=schema)
+
+# Show Data
+df.show()
+
+<img width="862" height="641" alt="image" src="https://github.com/user-attachments/assets/4b615a69-55a2-435d-a4e1-91a646013c8d" />
+
+# 3. Reading Different File Formats with Schema
+#   3.1 Reading CSV with Schema
+Used to read CSV files while applying a predefined schema.
+
+Example:
+
+schema = StructType([
+
+    StructField("id", IntegerType(), True),
+    
+    StructField("name", StringType(), True),
+    
+    StructField("age", IntegerType(), True)
+])
+
+df = spark.read.format("csv").option("header", "true").schema(schema).load("path/file.csv")
+# without schema
+
+<img width="893" height="547" alt="image" src="https://github.com/user-attachments/assets/fe6218cf-16a6-4043-b7e8-7bd6f888e078" />
+
+# with schema
+<img width="841" height="636" alt="image" src="https://github.com/user-attachments/assets/b639bf9d-c5dd-4843-845d-fe3a19e850d3" />
+
+# 3.2 Reading Parquet
+Parquet is a columnar format; schema is automatically preserved.
+
+Example:
+
+df = spark.read.parquet("path/file.parquet")
+# 3.3 Reading JSON with Schema
+JSON files can be read with a predefined schema.
+
+Example:
+
+schema = StructType([
+
+    StructField("id", IntegerType(), True),
+    
+    StructField("details", StructType([
+    
+        StructField("name", StringType(), True),
+        
+        StructField("age", IntegerType(), True)
+    ]))
+])
+
+df = spark.read.schema(schema).json(r"C:\Users\LENOVO\Downloads\sample2.json")
+df.show()
+
+<img width="917" height="633" alt="image" src="https://github.com/user-attachments/assets/dbcdb12b-caa0-4348-bfc9-59255c0a7186" />
+
+
+# JSON – WITHOUT Schema
+
+df = spark.read.json(r"C:\Users\LENOVO\Downloads\sample2.json")
+df.show()
+
+<img width="670" height="642" alt="image" src="https://github.com/user-attachments/assets/01fbde97-1e32-49a8-aac2-c629277463e6" />
+
+# Reading Parquet
+Parquet files are optimized for big data processing.
+
+df = spark.read.parquet(r"C:\Users\LENOVO\Downloads\titanic.parquet")
+df.show()
+
+<img width="955" height="642" alt="image" src="https://github.com/user-attachments/assets/855f1a19-5ed0-4cfa-8657-32520dc88282" />
+
+# 4. Writing Different File Formats with Schema
+# 4.1 Write DataFrame to CSV
+Writes output as CSV.
+# Example:
+df.write.option("header", "true").mode("overwrite").csv("path/output.csv")
+# 4.2 Write DataFrame to Parquet
+Parquet automatically stores schema.
+# Example:
+df.write.mode("overwrite").parquet("path/output.parquet")
+# 4.3 Write DataFrame to JSON
+Writes JSON data.
+Example:
+df.write.mode("overwrite").json("path/output.json")
+
+
+
 
 
 
