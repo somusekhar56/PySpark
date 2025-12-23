@@ -1406,6 +1406,76 @@ Writes JSON data.
 Example:
 df.write.mode("overwrite").json("path/output.json")
 
+# 5. Slowly Changing Dimensions (SCD)
+Used in Data Warehousing to manage changing data.
+
+# 5.1 SCD Type 1 (Overwrite)
+No history maintained.
+Old data is overwritten by new data.
+Use Case: Correcting wrong values.
+
+# 5.2 SCD Type 2 (History Tracking)
+Maintains full history.
+Adds new rows instead of updating.
+Usually uses: start_date, end_date, is_current flags.
+Use Case: Customer address history.
+
+# 5.3 SCD Type 3 (Limited History)
+Stores limited number of previous values.
+Adds new columns like: previous_address.
+Use Case: Track only most recent change
+
+# 1. Write Methods
+These methods define how data is written into tables or files in Spark.
+
+# 1.1 Overwrite
+Replaces existing data completely.
+Deletes old data and writes fresh data.
+Example:
+df.write.mode("overwrite").parquet("/path/output")
+
+# 1.2 Overwrite Partition
+Overwrites only specific partitions instead of the whole table.
+Saves time and storage.
+Example:
+df.write.mode("overwrite").option("replaceWhere", "year = 2023").saveAsTable("sales")
+
+# 1.3 Upsert (Merge)
+Updates existing records and inserts new records.
+Used in Delta Lake using MERGE INTO.
+Example:
+MERGE INTO target t
+USING source s
+ON t.id = s.id
+WHEN MATCHED THEN UPDATE SET *
+WHEN NOT MATCHED THEN INSERT *;
+
+# 1.4 Append
+Adds new data to an existing dataset.
+Does not modify old data.
+Example:
+df.write.mode("append").json("/path/output")
+
+# 2. Table Types
+Spark SQL supports two types of tables: Managed and External.
+
+# 2.1 Managed Table
+Spark manages both metadata and data.
+Dropping the table removes data from storage.
+Creation Example:
+
+CREATE TABLE emp (id INT, name STRING)
+USING PARQUET;
+
+# 2.2 External Table
+Spark manages only metadata.
+Data lives outside the warehouse.
+Dropping the table does not delete the data.
+Creation Example:
+CREATE TABLE emp_ext
+USING CSV
+LOCATION '/data/employees';
+
 
 
 
