@@ -1445,9 +1445,13 @@ Updates existing records and inserts new records.
 Used in Delta Lake using MERGE INTO.
 Example:
 MERGE INTO target t
+
 USING source s
+
 ON t.id = s.id
+
 WHEN MATCHED THEN UPDATE SET *
+
 WHEN NOT MATCHED THEN INSERT *;
 
 # 1.4 Append
@@ -1465,6 +1469,7 @@ Dropping the table removes data from storage.
 Creation Example:
 
 CREATE TABLE emp (id INT, name STRING)
+
 USING PARQUET;
 
 # 2.2 External Table
@@ -1472,8 +1477,11 @@ Spark manages only metadata.
 Data lives outside the warehouse.
 Dropping the table does not delete the data.
 Creation Example:
+
 CREATE TABLE emp_ext
+
 USING CSV
+
 LOCATION '/data/employees';
 
 
