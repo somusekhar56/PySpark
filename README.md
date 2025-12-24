@@ -1484,6 +1484,120 @@ USING CSV
 
 LOCATION '/data/employees';
 
+# 2. Types of Loads
+Data load mechanisms used in ETL/ELT pipelines.
+# 2.1 Full Load
+Definition
+Loads the entire dataset from source to target.
+# When to Use
+Small datasets
+
+Backfills
+
+When source does not support incremental tracking
+# Process
+TRUNCATE target table.
+
+INSERT all data from source.
+# Example
+TRUNCATE TABLE dw.countries;
+
+INSERT INTO dw.countries
+
+SELECT * FROM source.countries;
+
+# 2.2 Incremental Load
+# Definition
+Loads only the new or updated records since the previous load.
+
+# Common Approaches
+Timestamp-based (updated_at)
+
+High watermark
+
+Auto-increment ID
+
+MERGE (upsert)
+# Example (Timestamp Based)
+
+MERGE INTO dw.orders t
+
+USING staged.orders_inc s
+
+ON t.order_id = s.order_id
+
+WHEN MATCHED THEN UPDATE SET t.amount = s.amount
+
+WHEN NOT MATCHED THEN INSERT *;
+
+2.3 Snapshot Loads
+Three types of snapshots that capture data state over time.
+
+# Full Snapshot
+Entire table copied at regular intervals.
+
+Used for historical audits.
+# Incremental Snapshot
+Only changed rows are captured.
+
+Saves space while keeping change history.
+# Rolling Snapshot
+Maintains only a fixed window (e.g., last 7 days) of snapshots.
+# Use Cases
+Time-series analytics
+
+Compliance reporting
+
+Troubleshooting historical changes
+
+# 2.4 Change Data Capture (CDC)
+# Definition
+Captures row-level changes (INSERT, UPDATE, DELETE) from the source.
+
+# Techniques
+Log-Based CDC (Best) — reads DB transaction logs
+
+Trigger-based
+
+Timestamp polling
+
+Snapshot diff
+# Benefits
+Handles deletes accurately
+
+Preserves order of events
+
+Low latency data replication
+# CDC Event Example
+{
+  "op": "u",
+  
+  "table": "orders",
+  
+  "key": {"order_id": 123},
+  
+  "after": {"amount": 500, "status": "shipped"}
+}
+# Applying CDC to Target Table
+MERGE INTO dw.orders t
+
+USING staging_event s
+
+ON t.order_id = s.order_id
+
+WHEN MATCHED THEN UPDATE SET t.status = s.status
+
+WHEN NOT MATCHED THEN INSERT *;
+# Summary Table
+| Load Type                | What it Does             | Data Loaded             | Use Case         | Example                |
+| ------------------------ | ------------------------ | ----------------------- | ---------------- | ---------------------- |
+| **Full Load**            | Reloads entire data      | All records             | Initial load     | Load all customers     |
+| **Incremental Load**     | Loads only changes       | New/Updated rows        | Daily batch      | Yesterday’s sales      |
+| **Full Snapshot**        | Full state copy          | All records             | Balance tracking | Daily account snapshot |
+| **Incremental Snapshot** | Snapshot of changes      | Changed records         | Inventory        | Daily stock changes    |
+| **Rolling Snapshot**     | Keeps last N snapshots   | Limited history         | Trend analysis   | Last 7 days            |
+| **CDC**                  | Tracks row-level changes | Inserts/Updates/Deletes | Real-time        | Streaming DB changes   |
+
 
 
 
